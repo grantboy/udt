@@ -16,18 +16,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import judp.judpServer;
+import judp.JudpServer;
 import judp.judpSocket;
 
 
 
 /**
- * ½ÓÊÕÎÄ¼þ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
  * @author jinyu
  * 
  */
 public class RecviceFiles {
-private	judpServer server=null;
+private JudpServer server=null;
 private Thread recThread=null;
 private static  Logger log=Logger.getLogger(RecviceFiles.class.getName());
 private String dir="";
@@ -43,7 +43,7 @@ public boolean start(String host,int port)
 	{
 		cur.mkdir();
 	}
-	server=new judpServer(host, port);
+	server=new JudpServer(host, port);
     boolean r=	server.start();
     recThread=new Thread(new Runnable() {
     
@@ -63,7 +63,7 @@ public boolean start(String host,int port)
 			private ConcurrentLinkedQueue<byte[]> recQueue=new ConcurrentLinkedQueue<byte[]>();
 			private boolean  isStop=false;
 			/**
-			 * Ð´ÈëÎÄ¼þ
+			 * Ð´ï¿½ï¿½ï¿½Ä¼ï¿½
 			 * @param data
 			 * @return
 			 */
@@ -80,12 +80,12 @@ public boolean start(String host,int port)
 		                long flen=fileInfo.get(fileName);
 		                if(flen==f.length())
 		                {
-		                	//Íê³É
-		                	log.info(fileName+"½ÓÊÕÍê³É");
+		                	//ï¿½ï¿½ï¿½
+		                	log.info(fileName+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		                	fileInfo.remove(fileName);
 		                	hashFile.remove(fileName);
 		                	//
-		                	 f.renameTo(new   File(filePath));   //¸ÄÃû  
+		                	 f.renameTo(new   File(filePath));   //ï¿½ï¿½ï¿½ï¿½  
 		                	 return true;
 		                }
 		                log.info(fileName+":"+f.length());
@@ -98,7 +98,7 @@ public boolean start(String host,int port)
 		     }
 			 
 			 /**
-			  * ½ÓÊÕÊý¾ÝÐ´ÈëÎÄ¼þ
+			  * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ä¼ï¿½
 			  */
 			 private  void  recData()
 			 {
@@ -151,10 +151,10 @@ public boolean start(String host,int port)
 				{
 					break;
 				}
-				//°´ÕÕIp
+				//ï¿½ï¿½ï¿½ï¿½Ip
 				String key=ss.getRemoteHost()+ss.getRemoteHost();
 				if (hashFile.containsKey(key)) {
-					//ËµÃ÷ÊÇ½ÓÊÕÊý¾Ý
+					//Ëµï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					byte[] tmp=new byte[r];
 					System.arraycopy(recData, 0, tmp, 0, r);
 					sumBytes+=r;
@@ -167,12 +167,12 @@ public boolean start(String host,int port)
 						if(timespan>1000)
 						{
 							speed=sumBytes/(timespan/1000);
-							sumBytes=0;//ÒÑ¾­¼ÆËã
+							sumBytes=0;//ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 							lastTime=System.currentTimeMillis();
 						}
 						else
 						{
-							//²»µ½1s
+							//ï¿½ï¿½ï¿½ï¿½1s
 						}
 					   
 					}
@@ -180,11 +180,11 @@ public boolean start(String host,int port)
 					{
 						
 					}
-					log.info("ÎÄ¼þ½ÓÊÕËÙ¶È(M/S)£º"+speed/1024/1024);
+					log.info("ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½(M/S)ï¿½ï¿½"+speed/1024/1024);
 				}
 				else
 				{
-					//ÐÅÏ¢
+					//ï¿½ï¿½Ï¢
 					String info = null;
 					try {
 						info = new String(recData,0,r,PackagetCharSet.CharSet);
@@ -211,7 +211,7 @@ public boolean start(String host,int port)
 						fileName=name;
 						if(len==0)
 						{
-							//¿ÕÎÄ¼þ²»»áÓÐÊý¾Ý
+							//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 							byte[]tmp=name.getBytes();
 							ByteBuffer buf=ByteBuffer.allocate(tmp.length+4);
 							buf.putInt(tmp.length);
@@ -229,7 +229,7 @@ public boolean start(String host,int port)
 							e.printStackTrace();
 						}
 						ss.setLargeRead(true);
-						log.info("·µ»ØÐÅÏ¢");
+						log.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢");
 						
 					}
 				   }

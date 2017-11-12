@@ -54,7 +54,7 @@ public class JudpClient {
 		  try {
               client.connect(ip, port);
               isSuccess=true;
-          } catch (InterruptedException |IOException e) {
+          } catch (InterruptedException | IOException e) {
               e.printStackTrace();
           }
 	  }

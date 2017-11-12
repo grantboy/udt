@@ -1,10 +1,10 @@
 /**    
- * ÎÄ¼şÃû£ºjudpSendFile.java    
+ * ???????judpSendFile.java    
  *    
- * °æ±¾ĞÅÏ¢£º    
- * ÈÕÆÚ£º2017Äê8ÔÂ27ÈÕ    
- * Copyright ×ãÏÂ Corporation 2017     
- * °æÈ¨ËùÓĞ    
+ * ?æ±¾?????    
+ * ?????2017??8??27??    
+ * Copyright ???? Corporation 2017     
+ * ???????    
  *    
  */
 package judp;
@@ -27,14 +27,14 @@ import udt.UDTReceiver;
 
 /**    
  *     
- * ÏîÄ¿Ãû³Æ£ºjudp    
- * ÀàÃû³Æ£ºjudpSendFile    
- * ÀàÃèÊö£º    ÎÄ¼ş·¢ËÍ
- * ´´½¨ÈË£ºjinyu    
- * ´´½¨Ê±¼ä£º2017Äê8ÔÂ27ÈÕ ÏÂÎç4:30:42    
- * ĞŞ¸ÄÈË£ºjinyu    
- * ĞŞ¸ÄÊ±¼ä£º2017Äê8ÔÂ27ÈÕ ÏÂÎç4:30:42    
- * ĞŞ¸Ä±¸×¢£º    
+ * ????????judp    
+ * ???????judpSendFile    
+ * ????????    ???????
+ * ???????jinyu    
+ * ???????2017??8??27?? ????4:30:42    
+ * ??????jinyu    
+ * ??????2017??8??27?? ????4:30:42    
+ * ???????    
  * @version     
  *     
  */
@@ -62,11 +62,11 @@ public class judpSendFile {
           public void run(){
               try{
                   UDTReceiver.connectionExpiryDisabled=true;
-                  judpServer server=null;
+                  JudpServer server=null;
                   if(host==null) {
-                      server=new judpServer(serverPort);
+                      server=new JudpServer(serverPort);
                   } else {
-                      server=new judpServer(host,serverPort);
+                      server=new JudpServer(host,serverPort);
                   }
 
                   server.start();

@@ -5,7 +5,7 @@ package Test;
 
 import java.util.concurrent.TimeUnit;
 
-import judp.judpServer;
+import judp.JudpServer;
 import judp.judpSocket;
 
 /**
@@ -14,8 +14,7 @@ import judp.judpSocket;
  */
 public class TestServer {
 	public static void main(String[] args) {
-	  //192.168.30.128
-		judpServer  server=new judpServer("192.168.1.10",1421);
+		JudpServer server=new JudpServer("192.168.1.4",1421);
 		server.start();
 		while(true)
 		{
@@ -29,14 +28,13 @@ public class TestServer {
 				 		while(r!=-1) {
 				   			r=socket.readData(data);
 				    		if(r==0) {
-				    	
-				    		try {
-								TimeUnit.MILLISECONDS.sleep(100);
-								continue;
-							} catch (InterruptedException e) {
-								e.printStackTrace();
+				    			try {
+									TimeUnit.MILLISECONDS.sleep(100);
+									continue;
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+				    			}
 				    		}
-				    	}
 				    	if(r==-1)
 				    	{
 				    		System.out.println("???-1???");

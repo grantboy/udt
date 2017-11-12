@@ -15,20 +15,20 @@ import udt.UDTSocket;
 
 /**
  * @author jinyu
- * 服务端接收封装
- * 服务端
+ * ??????????
+ * ?????
  */
-public class judpServer  {
+public class JudpServer {
     private UDTServerSocket server=null;
     //private final SynchronousQueue<judpSocket> sessionHandoff=new SynchronousQueue<judpSocket>();
     private boolean isStart=true;
     private boolean isSucess=true;
-    private boolean isRWMaster=true;//与默认值一致
+    private boolean isRWMaster=true;//?????????
     private boolean islagerRead=false;
-    private static final Logger logger=Logger.getLogger(judpServer.class.getName());
+    private static final Logger logger=Logger.getLogger(JudpServer.class.getName());
 
     /**
-     * 关闭服务端
+     * ???????
      */
     public void close()
     {
@@ -38,15 +38,15 @@ public class judpServer  {
 
     /**
      *
-     * @param port 端口
+     * @param port ???
      */
-    public judpServer(int port)
+    public JudpServer(int port)
     {
 
     	try {
     		server=new UDTServerSocket(port);
     	} catch (SocketException e) {
-    		logger.log(Level.WARNING, "绑定失败："+e.getMessage());
+    		logger.log(Level.WARNING, "??????"+e.getMessage());
     		isSucess=false;
     	} catch (UnknownHostException e) {
     		isSucess=false;
@@ -56,17 +56,16 @@ public class judpServer  {
 
     /**
      *
-     * @param localIP 本地IP
-     * @param port  端口
+     * @param localIP ????IP
+     * @param port  ???
      */
-    public judpServer(String localIP,int port)
+    public JudpServer(String localIP, int port)
     {
     	try {
     		InetAddress  addr=	InetAddress.getByName(localIP);
     		server=new UDTServerSocket(addr,port);
-
     	} catch (SocketException e) {
-    		logger.log(Level.WARNING, "绑定失败："+e.getMessage());
+    		logger.log(Level.WARNING, "??????"+e.getMessage());
     		isSucess=false;
     	} catch (UnknownHostException e) {
     		isSucess=false;
@@ -75,11 +74,11 @@ public class judpServer  {
     }
 
     /**
-     * 启动接收
+     * ????????
      */
     public boolean start() {
       if(!isStart||!isSucess) {
-    	  logger.log(Level.WARNING, "已经关闭的监听或监听端口不能使用");
+    	  logger.log(Level.WARNING, "????????????????????????");
     	  return false;
       }
     	Thread serverThread=new Thread(new Runnable() {
@@ -110,10 +109,10 @@ public class judpServer  {
     	return true;
     }
     /**
-     * 设置是读取为主还是写入为主
-     * 如果是写入为主，当读取速度慢时，数据覆盖丢失
-     * 默认读取为主，还没有读取则不允许覆盖，丢掉数据，等待重复
-     * 设置大数据读取才有意义
+     * ???????????????写?????
+     * ?????写?????????????????????????????
+     * ??????????????卸??????????????????????????
+     * ???????????????????
      * @param isRead
      */
     public void  setBufferRW(boolean isRead) {
@@ -122,8 +121,8 @@ public class judpServer  {
     }
 
     /**
-     * 设置大数据读取
-     * 默认 false
+     * ???????????
+     * ??? false
      * @param islarge
      */
     public void setLargeRead(boolean islarge)
@@ -131,7 +130,7 @@ public class judpServer  {
     	this.islagerRead=islarge;
     }
     /**
-     * 返回连接的socket
+     * ?????????socket
      */
     public judpSocket accept() {
       UDTSocket socket=SocketControls.getInstance().getSocket();
